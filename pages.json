@@ -1,0 +1,89 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页,
+		{
+			"path": "pages/main/main",
+			"style":{
+				"app-plus":{
+					"titleNView":false
+				}
+			}
+		}, 
+		{
+			"path": "pages/cl/cl",
+			"style": {
+				"navigationBarTitleText": "持仓"
+			}
+		},{
+			"path": "pages/zx/zx",
+			"style": {
+				"navigationBarTitleText": "行情"
+			}
+		},{
+			"path": "pages/self/self",
+			"style": {
+				"navigationBarTitleText": "自选"
+			}
+		}, {
+			"path": "pages/me/me",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/reg/forget",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		},{
+			"path": "pages/reg/reg",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		}, {
+			"path": "pages/pwd/pwd",
+			"style": {
+				"navigationBarTitleText": "找回密码"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#575757",
+		"selectedColor": "#ef584d",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/main/main",
+			"text": "首页",
+			"iconPath": "static/images/icon-home.png",
+			"selectedIconPath": "static/images/icon-home-cur.png"
+		}, {
+			"pagePath": "pages/cl/cl",
+			"text": "持仓",
+			"iconPath": "static/images/icon-chichang.png",
+			"selectedIconPath": "static/images/icon-chichang-cur.png"
+		}, {
+			"pagePath": "pages/zx/zx",
+			"text": "行情",
+			"iconPath": "static/images/icon-hangqing.png",
+			"selectedIconPath": "static/images/icon-hangqing-cur.png"
+		}, {
+			"pagePath": "pages/self/self",
+			"text": "自选",
+			"iconPath": "static/images/icon-zixuan.png",
+			"selectedIconPath": "static/images/icon-zixuan-cur.png"
+		}, {
+			"pagePath": "pages/me/me",
+			"text": "我的",
+			"iconPath": "static/images/icon-my.png",
+			"selectedIconPath": "static/images/icon-my-cur.png"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#f0e088",
+		"backgroundColor": "#fbf9fe"
+	}
+}
