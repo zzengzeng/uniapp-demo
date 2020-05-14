@@ -47,9 +47,9 @@
 </template>
 
 <script>
-	import service from '../../service.js';
+	import service from '@/service.js';
 	import {mapMutations,mapGetters} from 'vuex';
-	import mInput from '../../components/m-input.vue'
+	import mInput from '@/components/m-input.vue';
 	export default {
 		components: {
 			mInput
@@ -217,7 +217,7 @@
 						if(res.statusCode == 201){
 							this.setAuthorization(res.data.access_token);
 							//将token存储到本地
-							localStorage.setItem("Authorization",this.Authorization);
+							uni.setStorageSync('Authorization',this.Authorization);
 							uni.reLaunch({
 								url: '../main/main',
 							});
@@ -232,7 +232,7 @@
 			},
 			forget() {
 				uni.reLaunch({
-					url: '../reg/reg',
+					url: '../reg/forget',
 				});
 				// this.$router.push('/loginRegistrat/forget')
 			},
@@ -240,11 +240,6 @@
 				uni.reLaunch({
 					url: '../reg/reg',
 				});
-			},
-			back() {
-				this.$router.push({
-					path: '/'
-				})
 			}
 		},
 		onReady() {

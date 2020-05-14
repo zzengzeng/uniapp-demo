@@ -27,7 +27,7 @@
 			/**
 			 * 值
 			 */
-			value: String,
+			value: '',
 			/**
 			 * 占位符
 			 */
@@ -115,8 +115,11 @@
 		line-height: inherit;
 		background-color: rgba(0, 0, 0, 0);
 		font-size: 28px;
+		-webkit-appearance: button;
+		-webkit-appearance: none;
+		border: none;
 		&::-webkit-input-placeholder {
-		  color: #d0d0d0;
+		  color: #fff;
 		}
 	}
 

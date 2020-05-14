@@ -11,11 +11,10 @@
 		}
 	}
 </script>
-
 <style>
+	@import "static/css/base.css";
 	/* 头条小程序需要把 iconfont 样式放到组件外 */
 	@import "components/m-icon/m-icon.css";
-	@import "static/css/base.css";
 	/*每个页面公共css */
 	page {
 		min-height: 100%;

@@ -1,0 +1,102 @@
+.me-group{
+	padding: 0;
+	.user{
+		background: #e7bf5d;
+		height: 278px;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0 60px;
+		padding-top: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		section {
+			&:first-child {
+				width: 25%;
+				height: 150px;
+	
+				img {
+					width: 100%;
+					height: 100%;
+					border-radius: 20px;
+				}
+			}
+	
+			&:last-child {
+				font-size: 34px;
+				color: #fff;
+				margin-left: 40px;
+			}
+	
+			.setting {
+				position: absolute;
+				width: 48px;
+				height: 40px;
+				right: 60px;
+				top: 40px;
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+	.surplus_money {
+		height: 100px;
+		width: 100%;
+		background-size: cover;
+		background-color: #e7bf5d;
+		border-bottom: 1px solid #eaeae9;
+	
+		ul {
+			display: -ms-flexbox;
+			display: flex;
+			height: 100px;
+			-ms-flex-align: center;
+			align-items: center;
+			-ms-flex-pack: distribute;
+			justify-content: space-around;
+			font-size: 34px;
+			font-weight: 700;
+			color: #333;
+			width: 90%;
+			margin: 0 auto;
+			background-color: #fff;
+			border-top-left-radius: 20px;
+			border-top-right-radius: 20px;
+	
+			li {
+				padding: 0 20px;
+				border-radius: 20px;
+				&:nth-child(2){
+					height:60px;
+					background-color: rgba(51, 51, 51, 0.55);
+					width: 4px;
+					padding: 0;
+				}
+			}
+		}
+	}
+	.basicInfo {
+		background-color: #fff;
+		width: 95%;
+		margin: 10px auto;
+	
+		p {
+			height: 90px;
+			line-height: 90px;
+			padding: 0 20px;
+			font-size: 28px;
+	
+			&:first-child {
+				border-bottom: 2px solid rgba(228, 231, 237, 0.51);
+	
+				span {
+					&:last-child {
+						color: rgba(85, 85, 85, 0.561);
+						float: right;
+					}
+				}
+			}
+		}
+	}
+}

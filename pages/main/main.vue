@@ -1,25 +1,7 @@
 <template>
 	<view class="content home">
 		<div class="banner">
-			<div class="search">
-				<div class="input">
-					<i>
-						<img :src="require('@/static/images/search.png')" />
-					</i>
-					<input v-model="searchInput" @blur.prevent="changeCount()" placeholder="请输入股票代码/名称" />
-				</div>
-				<div v-show="addInput.length != 0" class="search_div">
-					<ul>
-						<li v-for="(item,index) in addInput" :key="index">
-							<div @click="postSearch(item.code)">
-								<span class="left">{{item.code | filtersName}}</span>
-								<span style="margin-left:.2rem;" class="left">{{item.name}}</span>
-							</div>
-							<span @click="addMyself(item.code)" class="right">点击添加</span>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<m-search></m-search>
 			<view class="page-section swiper">
 				<view class="page-section-spacing">
 					<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
@@ -42,15 +24,83 @@
 				</view>
 			</view>
 		</div>
+		<div class="container">
+			<div class="nav">
+				<ul>
+					<li>
+						<router-link tag="a" to="/self">
+							<img :src="require('@/static/images/nav/kaihu.png')" />
+							<p>发布策略</p>
+						</router-link>
+					</li>
+					<li>
+						<router-link tag="a" to="/recharge">
+							<img :src="require('@/static/images/nav/tixian.png')" />
+							<p>充值中心</p>
+						</router-link>
+					</li>
+					<li>
+						<router-link tag="a" to="/simBuy">
+							<img :src="require('@/static/images/nav/xixun.png')" />
+							<p>模拟点买</p>
+						</router-link>
+					</li>
+					<li>
+						<router-link tag="a" to="mrouter">
+							<img :src="require('@/static/images/nav/huodong.png')" />
+							<p>新手指引</p>
+						</router-link>
+					</li>
+					<li>
+						<router-link tag="a" to="/dynamic">
+							<img :src="require('@/static/images/nav/paihangbang.png')" />
+							<p>最新动态</p>
+						</router-link>
+					</li>
+					<li>
+						<router-link tag="a" to="/morecl">
+							<img :src="require('@/static/images/nav/jiaoyi.png')" />
+							<p>最新策略</p>
+						</router-link>
+					</li>
+					<li>
+						<router-link tag="a" to="/cl">
+							<img :src="require('@/static/images/nav/zixunguan.png')" />
+							<p>自选股</p>
+						</router-link>
+					</li>
+					<li>
+						<router-link tag="a" to="/zx">
+							<img :src="require('@/static/images/nav/hangqing.png')" />
+							<p>市场行情</p>
+						</router-link>
+					</li>
+				</ul>
+			</div>
+			<m-share-num></m-share-num>
+			<div class="redian">
+				<p>热点资讯</p>
+				<div class="scroll-wrap" v-if="arr.length>0">
+					<section class="news" v-for="(item,index) in arr" :key="index">
+						<span>{{item.create_time}}</span>
+						<span>{{item.rich_text}}</span>
+					</section>
+				</div>
+			</div>
+		</div>
 	</view>
 </template>
 
 <script>
+	import mSearch from '@/components/m-search.vue';
+	import mShareNum from '@/components/m-share-num.vue';
 	export default {
+		components: {
+			mSearch,
+			mShareNum
+		},
 		data() {
 			return {
-				searchInput: "",
-				addInput: [],
 				tab: [{
 						title: "最新动态",
 						more: "动态",
@@ -91,71 +141,28 @@
 				duration: 500
 			};
 		},
-		watch: {
-			searchInput(data) {
-				uni.request({
-					url: '/api/stock/search',
-					data: {
-						code: data
-					},
-					success: (res) => {
-						//这里因为需要重新渲染页面，所以需要使用push，不能直接赋值
-						this.addInput = res.data && res.data.data;
-						console.log(this.addInput)
-					},
-					fail: (err) => {
-						console.log(err, 'err')
-					}
-				})
-			}
-		},
 		onLoad() {
-
+			this.getData();
 		},
 		methods: {
-			changeCount() {
-				// this.addInput = [];
-			},
-			postSearch(code) {
-				let userToken = localStorage.getItem("Authorization");
+			getData() {
 				uni.request({
-					url: '/api/selfstock',
-					method: "POST",
-					data: {
-						code: code
+					url:'/api/lx',
+					data:{
+						page: this.page,
+						page_limit: this.page_limit
 					},
-					header: {
-						'Authorization': "Bearer " + userToken,
-						'content-type':'application/x-www-form-urlencoded'
+					success:(res)=>{
+						this.noDate = false;
+						if (this.page == 1) {
+							this.arr = res.data.list;
+						} else {
+							this.arr = this.arr.concat(res.data.list);
+						}
+						//this.noDate=true
 					},
-					success: (res) => {
-						console.log(res, 'res')
-					},
-					fail: (err) => {
-						console.log(err, 'err')
-					}
-				})
-			},
-			addMyself(code) {
-				let userToken = localStorage.getItem("Authorization");
-				uni.request({
-					url: '/api/selfstock',
-					method: "POST",
-					data: {
-						code: code
-					},
-					header: {
-						'Authorization': "Bearer " + userToken,
-						'content-type':'application/x-www-form-urlencoded'
-					},
-					success: (res) => {
-						console.log(res,'res')
-						// if (res.status) {
-						// 	this.$message("已添加到自选股票");
-						// }
-					},
-					fail: (err) => {
-						console.log(err, 'err')
+					fail: (err)=>{
+						console.log(err,'err')
 					}
 				})
 			},
