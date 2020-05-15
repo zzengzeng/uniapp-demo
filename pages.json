@@ -3,6 +3,7 @@
 		{
 			"path": "pages/main/main",
 			"style":{
+				"navigationBarTitleText": "首页",
 				"app-plus":{
 					"titleNView":false
 				}
@@ -11,12 +12,28 @@
 		{
 			"path": "pages/cl/cl",
 			"style": {
-				"navigationBarTitleText": "持仓",
-				"app-plus":{
-					"titleNView":{
-						"autoBackButton": true
-					}
-				}
+				"navigationBarTitleText": "持仓"
+			}
+		},
+		{
+			"path": "pages/cl/simBuy",
+			"style": {
+				"navigationBarTitleText": "模拟点买"
+			}
+		}, {
+			"path": "pages/cl/dynamic",
+			"style": {
+				"navigationBarTitleText": "最新动态"
+			}
+		},{
+			"path": "pages/cl/strategy",
+			"style": {
+				"navigationBarTitleText": "最新策略"
+			}
+		},{
+			"path": "pages/cl/transactionDetails",
+			"style": {
+				"navigationBarTitleText": "交易明细"
 			}
 		},{
 			"path": "pages/zx/zx",
@@ -30,17 +47,42 @@
 			}
 		}, {
 			"path": "pages/me/me",
-			"style":{
+			"style": {
 				"app-plus":{
-					"titleNView":false
+					"titleNView": false
 				}
 			}
-		},{
+		},
+		{
+			"path": "pages/me/recharge",
+			"style": {
+				"navigationBarTitleText": "充值"
+			}
+		},
+		{
+			"path": "pages/me/zfb",
+			"style": {
+				"navigationBarTitleText": "充值"
+			}
+		},
+		{
+			"path": "pages/me/dg",
+			"style": {
+				"navigationBarTitleText": "充值"
+			}
+		},
+		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
 			}
-		}, {
+		}, 
+		{
+			"path": "pages/login/guide",
+			"style": {
+				"navigationBarTitleText": "新手引导"
+			}
+		},{
 			"path": "pages/reg/forget",
 			"style": {
 				"navigationBarTitleText": "忘记密码"

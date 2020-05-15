@@ -27,53 +27,11 @@
 		<div class="container">
 			<div class="nav">
 				<ul>
-					<li>
-						<router-link tag="a" to="/self">
-							<img :src="require('@/static/images/nav/kaihu.png')" />
-							<p>发布策略</p>
-						</router-link>
-					</li>
-					<li>
-						<router-link tag="a" to="/recharge">
-							<img :src="require('@/static/images/nav/tixian.png')" />
-							<p>充值中心</p>
-						</router-link>
-					</li>
-					<li>
-						<router-link tag="a" to="/simBuy">
-							<img :src="require('@/static/images/nav/xixun.png')" />
-							<p>模拟点买</p>
-						</router-link>
-					</li>
-					<li>
-						<router-link tag="a" to="mrouter">
-							<img :src="require('@/static/images/nav/huodong.png')" />
-							<p>新手指引</p>
-						</router-link>
-					</li>
-					<li>
-						<router-link tag="a" to="/dynamic">
-							<img :src="require('@/static/images/nav/paihangbang.png')" />
-							<p>最新动态</p>
-						</router-link>
-					</li>
-					<li>
-						<router-link tag="a" to="/morecl">
-							<img :src="require('@/static/images/nav/jiaoyi.png')" />
-							<p>最新策略</p>
-						</router-link>
-					</li>
-					<li>
-						<router-link tag="a" to="/cl">
-							<img :src="require('@/static/images/nav/zixunguan.png')" />
-							<p>自选股</p>
-						</router-link>
-					</li>
-					<li>
-						<router-link tag="a" to="/zx">
-							<img :src="require('@/static/images/nav/hangqing.png')" />
-							<p>市场行情</p>
-						</router-link>
+					<li v-for="(item,index) in navList" :key="index">
+						<a @click="toJump(item.link,item.tab)">
+							<img :src="item.imgUrl" />
+							<p>{{item.title}}</p>
+						</a>
 					</li>
 				</ul>
 			</div>
@@ -101,44 +59,60 @@
 		},
 		data() {
 			return {
-				tab: [{
-						title: "最新动态",
-						more: "动态",
-						moreLink: "/dynamic"
-					},
-					{
-						title: "最优策略",
-						more: "策略",
-						moreLink: "/morecl"
-					},
-					{
-						title: "最牛达人"
-						//more: "达人",
-						//moreLink: "/bullUser"
-					}
-				],
 				tabIndex: 0,
 				noDate: true, //判断是否加载的开关
 				arr: [],
 				page: 1,
 				page_limit: 20,
-				//要闻
-				mustNew: [],
-				//4个指数的数据
-				Zs: [],
-				//动态的数据
-				Dt: [],
-				//策略的数据
-				Cl: [],
-				//最佳牛人
-				Bull: [],
-				more: "动态",
-				moreLink: "/dynamic",
-				background: ['color1', 'color2', 'color3'],
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
-				duration: 500
+				duration: 500,
+				navList:[
+					{
+						title:'发布策略',
+						link:'/pages/self/self',
+						imgUrl:require('@/static/images/nav/kaihu.png'),
+						tab: true
+					},
+					{
+						title:'充值中心',
+						link:'/pages/me/recharge',
+						imgUrl:require('@/static/images/nav/tixian.png')
+					},
+					{
+						title:'模拟点买',
+						link:'/pages/cl/simBuy',
+						imgUrl:require('@/static/images/nav/xixun.png')
+					},
+					{
+						title:'新手指引',
+						link:'/pages/login/guide',
+						imgUrl:require('@/static/images/nav/huodong.png')
+					},
+					{
+						title:'最新动态',
+						link:'/pages/cl/dynamic',
+						imgUrl:require('@/static/images/nav/paihangbang.png')
+					},
+					{
+						title:'最新策略',
+						link:'/pages/cl/strategy',
+						imgUrl:require('@/static/images/nav/jiaoyi.png')
+					},
+					{
+						title:'自选股',
+						link:'/pages/cl/cl',
+						tab: true,
+						imgUrl:require('@/static/images/nav/zixunguan.png')
+					},
+					{
+						title:'市场行情',
+						link:'/pages/zx/zx',
+						tab: true,
+						imgUrl:require('@/static/images/nav/hangqing.png')
+					},
+				]
 			};
 		},
 		onLoad() {
@@ -166,6 +140,17 @@
 					}
 				})
 			},
+			toJump(link,tab){
+				if(tab){
+					uni.switchTab({
+					    url: link
+					});
+				}else{
+					uni.navigateTo({
+					    url: link
+					});
+				}
+			}
 		}
 	}
 </script>

@@ -124,13 +124,13 @@
 		display: flex;
 		/* #endif */
 		flex-direction: row;
-		height: 40px;
+		height: 80px;
 		align-items: center;
 		justify-content: center;
 	}
 
 	.uni-load-more__text {
-		font-size: 15px;
+		font-size: 30px;
 	}
 
 	.uni-load-more__img {

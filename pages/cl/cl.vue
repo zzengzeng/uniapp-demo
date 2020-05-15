@@ -174,8 +174,6 @@
 				history: [],
 				//问题
 				searchInput: [],
-				//搜索显示框
-				addInput: [],
 				//当前持仓
 				nowCc: [],
 				//当前持仓是否为空
@@ -205,23 +203,6 @@
 				]
 			};
 		},
-		watch: {
-			searchInput(data) {
-				uni.request({
-					url: '/api/stock/search',
-					data: {
-						code: data
-					},
-					success: (res) => {
-						//这里因为需要重新渲染页面，所以需要使用push，不能直接赋值
-						this.addInput = res.data && res.data.data;
-					},
-					fail: (err) => {
-						console.log(err, 'err')
-					}
-				})
-			}
-		},
 		mounted() {
 			this.getNow();
 			this.showHistory();
@@ -240,11 +221,8 @@
 		methods: {
 			//去查看历史记录的交易详情
 			toDetail(id) {
-				this.$router.push({
-					path: "/transactionDetails",
-					query: {
-						id: id
-					}
+				uni.navigateTo({
+				    url: '/pages/cl/transactionDetails?id='+id
 				});
 			},
 			//取消追加信用金
@@ -304,10 +282,10 @@
 				})
 			},
 			repeat() {
-				this.time = setInterval(() => {
-					// this.getNow1();
-					this.getAccountCount();
-				}, 2000);
+				// this.time = setInterval(() => {
+				// 	// this.getNow1();
+				// 	this.getAccountCount();
+				// }, 2000);
 			},
 
 			//添加到搜索的历史记录，并跳转到K线页面
